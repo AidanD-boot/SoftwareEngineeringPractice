@@ -39,6 +39,38 @@ public class BankAccount {
         if (email.indexOf('@') == -1){
             return false;
         }
+        String beforeArabola = new String();
+        String afterArabola = new String();
+        for (int i = 0; i < email.indexOf('@'); i++){
+            beforeArabola += email.charAt(i);
+        }
+        for (int i = email.indexOf('@'); i < email.length(); i++){
+            afterArabola += email.charAt(i);
+        }
+        if (email.length() < 1){
+            return false;
+        }
+        else if (email.indexOf('-') == (email.indexOf('@') - 1)){
+            return false;
+        }
+        else if (beforeArabola.indexOf('.') != beforeArabola.lastIndexOf('.')){
+            return false;
+        }
+        else if (afterArabola.indexOf('.') != afterArabola.lastIndexOf('.')){
+            return false;
+        }
+        else if (beforeArabola.indexOf('.') == 0){
+            return false;
+        }
+        else if (email.indexOf('#') != -1){
+            return false;
+        }
+        else if (afterArabola.length() - afterArabola.indexOf('.') < 3){
+            return false;
+        }
+        else if (afterArabola.indexOf('.') == -1){
+            return false;
+        }
         else {
             return true;
         }
