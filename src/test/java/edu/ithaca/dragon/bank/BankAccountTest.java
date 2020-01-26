@@ -16,9 +16,22 @@ class BankAccountTest {
     @Test
     void withdrawTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-        bankAccount.withdraw(100);
 
+        bankAccount.withdraw(100);
         assertEquals(100, bankAccount.getBalance());
+
+        bankAccount.withdraw(100);
+        assertEquals(0,bankAccount.getBalance());
+
+        BankAccount bankAccount1 = new BankAccount("b@c.com", 1000);
+
+        bankAccount1.withdraw(1000);
+        assertEquals(0,bankAccount1.getBalance());
+
+        BankAccount bankAccount2 = new BankAccount("c@d.mail", 0);
+
+        bankAccount2.withdraw(500);
+        assertEquals(0,bankAccount2.getBalance());
     }
 
     @Test
