@@ -9,8 +9,16 @@ class BankAccountTest {
     @Test
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-
         assertEquals(200, bankAccount.getBalance());
+
+        BankAccount bankAccount1 = new BankAccount("b@c.mail", 0);
+        assertEquals(0, bankAccount1.getBalance());
+
+        BankAccount bankAccount2 = new BankAccount("c@d.org", 2000);
+        assertEquals(2000, bankAccount2.getBalance());
+
+        BankAccount bankAccount3 = new BankAccount("d@e.com", 27);
+        assertEquals(27, bankAccount3.getBalance());
     }
 
     @Test
