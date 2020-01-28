@@ -44,22 +44,22 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
-        assertTrue(BankAccount.isEmailValid("a-b@.com"));
-        assertTrue(BankAccount.isEmailValid("abc.def@mail.com"));
-        assertTrue(BankAccount.isEmailValid("abc@mail.org"));
-        assertTrue(BankAccount.isEmailValid(("abcd@mail-archive.com")));
-        assertTrue(BankAccount.isEmailValid("abcd@mail.cc"));
-        assertTrue(BankAccount.isEmailValid("abc_de@mail.com"));
+        assertTrue(BankAccount.isEmailValid( "a@b.com")); //Equivalence for correct basic email
+        assertTrue(BankAccount.isEmailValid("a-b@.com")); //Equivalence for correct "-" in email
+        assertTrue(BankAccount.isEmailValid("abc.def@mail.com")); //Equivalence for correct "." in email
+        assertTrue(BankAccount.isEmailValid("abc@mail.org")); //Equivalence for correct extension in email
+        assertTrue(BankAccount.isEmailValid(("abcd@mail-archive.com"))); //Equivalence for correct "-" in domain
+        assertTrue(BankAccount.isEmailValid("abcd@mail.cc")); //Equivalence for correct extension in email
+        assertTrue(BankAccount.isEmailValid("abc_de@mail.com")); //Equivalence for correct "_" in email
 
-
-        assertFalse( BankAccount.isEmailValid(""));
-        assertFalse(BankAccount.isEmailValid("ab-@b.edu"));
-        assertFalse(BankAccount.isEmailValid(".abcd@mail.com"));
-        assertFalse(BankAccount.isEmailValid("abc..d@de.com"));
-        assertFalse(BankAccount.isEmailValid("abcd#de@mail.com"));
-        assertFalse(BankAccount.isEmailValid("abc@mail..com"));
-        assertFalse(BankAccount.isEmailValid("abcde@mail"));
+        assertFalse( BankAccount.isEmailValid("")); //Equivalence for blank entry
+        assertFalse(BankAccount.isEmailValid("ab-@b.edu")); //Equivalence for incorrect "-" in email
+        assertFalse(BankAccount.isEmailValid("ab--@b.edu")); //Equivalence for incorrect "-" in email
+        assertFalse(BankAccount.isEmailValid(".abcd@mail.com")); //Equivalence for incorrect "." in email
+        assertFalse(BankAccount.isEmailValid("abc..d@de.com")); //Equivalence for incorrect "." in email
+        assertFalse(BankAccount.isEmailValid("abcd#de@mail.com")); //Equivalence for incorrect "#" in email
+        assertFalse(BankAccount.isEmailValid("abc@mail..com")); //Equivalence for incorrect ".." in email
+        assertFalse(BankAccount.isEmailValid("abcde@mail")); //Equivalence for no extension in email
     }
 
     @Test
