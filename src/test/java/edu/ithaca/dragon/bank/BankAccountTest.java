@@ -26,20 +26,20 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
         bankAccount.withdraw(100);
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(100, bankAccount.getBalance()); //Equivalence for having leftover money in account
 
         bankAccount.withdraw(100);
-        assertEquals(0,bankAccount.getBalance());
+        assertEquals(0,bankAccount.getBalance()); //Equivalence for withdrawing to zero
 
         BankAccount bankAccount1 = new BankAccount("b@c.com", 1000);
 
         bankAccount1.withdraw(1000);
-        assertEquals(0,bankAccount1.getBalance());
+        assertEquals(0,bankAccount1.getBalance()); //Equivalence for withdrawing entire account
 
         BankAccount bankAccount2 = new BankAccount("c@d.mail", 0);
 
         bankAccount2.withdraw(500);
-        assertEquals(0,bankAccount2.getBalance());
+        assertEquals(0,bankAccount2.getBalance()); //Equivalence for trying to withdraw without money in account
     }
 
     @Test
