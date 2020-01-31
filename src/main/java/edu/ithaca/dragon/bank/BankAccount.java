@@ -1,5 +1,6 @@
 package edu.ithaca.dragon.bank;
 
+
 public class BankAccount {
 
     private String email;
@@ -33,8 +34,34 @@ public class BankAccount {
         if (amount > 0 && amount <= balance){
             balance-=amount;
         }
+        else if (amount < 0){
+            throw new IllegalArgumentException("Error: Amount must be greater than zero");
+        }
+        else if (amount > balance){
+            throw new IllegalArgumentException("Error: Amount is greater than balance");
+        }
+        else{
+            throw new IllegalArgumentException("Error: Amount is not valid");
+        }
     }
 
+    /**
+     * Checks validity of amounts being entered.
+     * (True if amount is positive and has two or less decimal places, otherwise it is false)
+     * @param amount in double
+     * @return boolean true or false
+     */
+    public static boolean isAmountValid(double amount){
+        String[] splitter = Double.toString(amount).split("\\.");
+        splitter[0].length();   // Before Decimal Count
+        int decimalLength = splitter[1].length();
+        if(amount > 0 && decimalLength < 3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public static boolean isEmailValid(String email){
         if (email.indexOf('@') == -1){
@@ -74,6 +101,34 @@ public class BankAccount {
         }
         else {
             return true;
+        }
+    }
+
+    /**
+     * subtracts from current account and moves it to another account
+     * @param amount
+     * @param account
+     */
+    public void transfer(double amount, BankAccount account){
+        if (isAmountValid(amount)){
+            this.withdraw(amount);
+            account.deposit(amount);
+        }
+        else{
+            throw new IllegalArgumentException("Transfer amount: " + amount + " is invalid, cannot withdraw money");
+        }
+    }
+
+    /**
+     * adds amount to balance if amountIsValid == true
+     * @param amount being deposited
+     */
+    public void deposit(double amount){
+        if (isAmountValid(amount)){
+            balance+=amount;
+        }
+        else{
+            throw new IllegalArgumentException("Deposit amount: " + amount + " is invalid, cannot withdraw money");
         }
     }
 }

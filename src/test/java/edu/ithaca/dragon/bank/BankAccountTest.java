@@ -43,6 +43,21 @@ class BankAccountTest {
     }
 
     @Test
+    void isAmountValidTest(){
+        assertTrue(BankAccount.isAmountValid(5));
+        assertTrue(BankAccount.isAmountValid(5.75));
+        assertTrue(BankAccount.isAmountValid(5.5));
+        assertTrue(BankAccount.isAmountValid(.01));
+        assertTrue(BankAccount.isAmountValid(1000.76));
+
+        assertFalse(BankAccount.isAmountValid(0));
+        assertFalse(BankAccount.isAmountValid(-.01));
+        assertFalse(BankAccount.isAmountValid(.001));
+        assertFalse(BankAccount.isAmountValid(50.789));
+        assertFalse(BankAccount.isAmountValid(.00062));
+    }
+
+    @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com")); //Equivalence for correct basic email
         assertTrue(BankAccount.isEmailValid("a-b@.com")); //Equivalence for correct "-" in email
